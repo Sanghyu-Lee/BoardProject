@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="imageDAO">
+	<select id="getImage" resultType="image">
+		SELECT * FROM image WHERE board_Idx = #{board_Idx}
+	</select>
+	<insert id="insertImage" parameterType="image">
+		INSERT INTO image
+		(image_Idx, board_Idx, uploadImageStr)
+		VALUES
+		(Image_SEQ.NEXTVAL, #{board_Idx}, #{uploadImageStr})
+	</insert>
+	<delete id="deleteImage" parameterType="image">
+		DELETE FROM image WHERE image_Idx = #{image_Idx}
+	</delete>
+	<update id="updateImage">
+		UPDATE image SET uploadImageStr = #{uploadImageStr} WHERE board_Idx = #{board_Idx}
+	</update>
+</mapper>

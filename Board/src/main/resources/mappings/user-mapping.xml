@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userDAO">
+
+	<select id="getUserList" resultType="user">
+		SELECT * FROM users
+	</select>
+
+	<select id="getUser" resultType="user">
+		SELECT * FROM users WHERE userID
+		= #{userID}
+	</select>
+
+	<insert id="userRegister" parameterType="user">
+		INSERT INTO users
+		(userID, userPassword, gender, userNickname, email)
+		VALUES
+		(#{userID}, #{userPassword}, #{gender}, #{userNickname}, #{email})
+	</insert>
+
+	<update id="updateUser" parameterType="user">
+		UPDATE users SET
+		userPassword = #{userPassword}, 
+		userNickname = #{userNickname},
+		email = #{email} 
+		WHERE userID = #{userID}
+	</update>
+
+</mapper>

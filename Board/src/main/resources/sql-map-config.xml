@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+  "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <typeAliases>
+    <typeAlias alias="user" type="com.mycompany.myapp.user.UserVO" />  
+    <typeAlias alias="board" type="com.mycompany.myapp.board.BoardVO" />  
+    <typeAlias alias="image" type="com.mycompany.myapp.image.ImageVO" />  
+    <typeAlias alias="reply" type="com.mycompany.myapp.board.reply.ReplyVO" />  
+  </typeAliases>
+
+  <mappers>
+    <mapper resource="mappings/user-mapping.xml"  />
+    <mapper resource="mappings/board-mapping.xml"  />
+    <mapper resource="mappings/image-mapping.xml"  />
+    <mapper resource="mappings/reply-mapping.xml"  />
+  </mappers>
+</configuration>  
+
+  

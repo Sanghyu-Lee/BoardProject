@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="replyDAO">
+
+	<insert id="insertReply" parameterType="reply">
+		INSERT INTO reply
+		(reply_Idx, board_Idx, replyer, reply)
+		VALUES
+		(Reply_SEQ.NEXTVAL, #{board_Idx}, #{replyer}, #{reply})
+	</insert>
+	<delete id="deleteReply" parameterType="reply">
+		DELETE FROM reply WHERE reply_Idx = #{reply_Idx}
+	</delete>
+	<select id="getReplyList" resultType="reply">
+		SELECT * FROM reply WHERE board_Idx = #{board_Idx} ORDER BY reply_Idx desc
+	</select>
+</mapper>
