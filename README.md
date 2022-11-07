@@ -23,6 +23,9 @@
 #1-1. 아이디 중복체크
 ![idcheck](https://user-images.githubusercontent.com/107376751/200276110-0cf000d4-cd2e-4400-aaed-214faf7ce36e.JPG)
 
+#1-2. 비밀번호 체크
+![passwordCheck](https://user-images.githubusercontent.com/107376751/200277675-72b5d125-ecf2-40a7-a513-39e505f66ecb.JPG)
+
 #2. 로그인
 ![login](https://user-images.githubusercontent.com/107376751/200275963-abd70b5c-5fe7-42e9-82e0-99db1b1cc624.JPG)
 
