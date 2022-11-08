@@ -3,6 +3,7 @@ package com.mycompany.myapp.view;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.myapp.user.BCrypt;
 import com.mycompany.myapp.user.UserService;
@@ -47,20 +47,28 @@ public class UserController {
 		return "main.jsp";
 	}
 
-	@RequestMapping(value = "/userCheck.do", method = RequestMethod.POST)
-	public String userCheck(UserVO vo, HttpSession session, Model model) {
+	@RequestMapping(value = "/userCheck.do")
+	public String userCheck(UserVO vo, HttpSession session, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		String path = request.getContextPath();
+		PrintWriter out = response.getWriter();
+		
 		String userID = (String) session.getAttribute("userID");
 		vo.setUserID(userID);
-		System.out.println(vo.toString());
 		UserVO user = service.getUser(vo);
 		if (BCrypt.checkpw(vo.getPassword(), user.getUserPassword())) {
 			model.addAttribute("user", user);
 			return "user/userUpdate.jsp";
 		}
-		return "user/userCheck.jsp";
+		out.println("<script>");
+		out.println("alert('비밀번호가 일치하지 않습니다.');");
+		out.println("location.href='"+path+"/user/userCheck.jsp';");
+		out.println("</script>");
+		return null;
 	}
 
-	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/idCheck.do")
 	public void idCheck(UserVO vo, HttpServletResponse response) throws IOException {
 		UserVO user = service.getUser(vo);
 		int check;
@@ -73,19 +81,34 @@ public class UserController {
 		out.println(check);
 	}
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String login(UserVO vo, HttpSession session) {
+	@RequestMapping(value = "/login.do")
+	public String login(UserVO vo, HttpSession session, 
+						HttpServletResponse response, 
+						HttpServletRequest request) throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		String path = request.getContextPath();
+		PrintWriter out = response.getWriter();
 		UserVO user = service.getUser(vo);
 		if (user == null) {
-			return "user/login.jsp";
+			out.println("<script>");
+			out.println("alert('아이디가 존재하지 않습니다.');");
+			out.println("location.href='"+path+"/user/login.jsp';");
+			out.println("</script>");
+			return null;
 		} else {
 			if (BCrypt.checkpw(vo.getPassword(), user.getUserPassword())) {
 				session.setAttribute("userID", user.getUserID());
 				session.setAttribute("userNickName", user.getUserNickname());
 				return "main.jsp";
+			} else {
+				out.println("<script>");
+				out.println("alert('비밀번호가 일치하지 않습니다.');");
+				out.println("location.href='"+path+"/user/login.jsp';");
+				out.println("</script>");
+				return null;
 			}
 		}
-		return "user/login.jsp";
 	}
 
 	@RequestMapping(value = "logout.do")
