@@ -16,6 +16,7 @@
 ● DB : Oracle XE 11g
 ● IDE : Eclipse 2022-06, Oracle SQL Developer
 
+제작기간 : 2022.10.17 ~ 2022.11.04
 
 #1. 회원가입
 ![register](https://user-images.githubusercontent.com/107376751/200276062-ef5bf205-6122-40a3-a92b-5dc8c001b1ed.JPG)
