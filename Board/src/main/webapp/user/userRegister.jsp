@@ -55,8 +55,12 @@
 		
 		if (password1 != password2) {
 			$('#passwordCheckMessage').html('비밀번호가 일치하지 않습니다.');
+			 const target = document.getElementById('userSubmit');
+			 target.disabled = true;
 		} else {
 			$('#passwordCheckMessage').html('');
+			const target = document.getElementById('userSubmit');
+			 target.disabled = false;
 		}
 
 	}
@@ -115,7 +119,7 @@
 				<tr>
 					<td colspan="3">
 					<h6 style="color: red; text-align:left;" id="passwordCheckMessage"></h6>
-					<input type="submit" class="btn btn-secondary" value="회원가입">
+					<input type="submit" id="userSubmit" class="btn btn-secondary" value="회원가입">
 						</td>
 				</tr>
 			</tbody>
