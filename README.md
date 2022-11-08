@@ -10,10 +10,15 @@
 5. 댓글작성, 삭제 구현
 
 개발환경
+
 ● 언어 : Java(JDK 11), HTML/CSS, JavaScript
+
 ● 서버 : Apache Tomcat 9.0
+
 ● 프레임워크 : Spring Framework, Mybatis 3.3.1
+
 ● DB : Oracle XE 11g
+
 ● IDE : Eclipse 2022-06, Oracle SQL Developer
 
 제작기간 : 2022.10.17 ~ 2022.11.04
